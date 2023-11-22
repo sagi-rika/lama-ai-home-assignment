@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 
-import { validate } from '../../middlewares/schema-validation'
+import { schemaValidation } from '../../middlewares/schema-validation'
 import { LoanApplicationI } from '../../types/loan-application'
 import { lenders } from '../../lenders'
 import { applicationMatchSchema } from './validation-schema'
@@ -10,7 +10,7 @@ const router = express.Router()
 
 router.post(
   '/applicationMatch',
-  validate(applicationMatchSchema),
+  schemaValidation(applicationMatchSchema),
   (req: Request<object, object, LoanApplicationI>, res: Response<Array<string>>): Response => {
     const loanApplication = req.body
 
